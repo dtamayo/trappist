@@ -31,7 +31,7 @@ pratiothresh = 0.02
 for simID in simIDs:
     outputs = initialize(planets, resonances, threebodyresonances)
     for filename in os.listdir(datapath):
-        result = re.search("IC{0}".format(simID)+r"K[0-9]\.[0-9]{4}e\+[0-9]{2}.bin", filename)
+        result = re.search("IC({0})".format(simID)+r"K([0-9]\.[0-9]{4}e\+[0-9]{2}).bin", filename)
         if result:
             ID = int(result.group(1))
             if ID == simID:
