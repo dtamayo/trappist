@@ -36,7 +36,7 @@ for simID in simIDs:
             ID = int(result.group(1))
             if ID == simID:
                 K = float(result.group(2))
-                sa = rebound.SimulationArchive(path+filename)
+                sa = rebound.SimulationArchive(datapath+filename)
                 Nout = len(sa)
                 N = sa[0].N
                 for i,sim in enumerate(sa):
