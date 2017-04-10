@@ -6,8 +6,9 @@ from numpy.random import seed, normal, uniform
 
 import sys
 sys.path.append('../')
-
 from ic import wrap, output, plot, removedamping, integrate, initialize, drawnormal, res_chain_setup
+
+datapath = '../data/'
 
 simID=int(sys.argv[1]) 
 seed(simID)
@@ -54,8 +55,8 @@ ps['h'].params["tau_a"] = -taua
 T = taua*delta*50
 Nout = 1000
 
-filename = 'data/IC{0}K{1:.4e}'.format(simID, K)
-sim.initSimulationArchive(filename+'.bin', interval=T/200)
+filename = '{0}IC{1}K{2:.4e}.bin'.format(datapath, simID, K)
+sim.initSimulationArchive(filename, interval=T/200)
 times = np.linspace(0,T,Nout)
 for i, time in enumerate(times):
     sim.integrate(time)
