@@ -7,12 +7,13 @@ import pandas as pd
 import re
 from numpy.random import seed, normal, uniform
 from numpy.testing import assert_approx_equal
+from collections import OrderedDict
 
 sys.path.append('../')
-
 from ic import output, initialize, removedamping, integrate
 
-from collections import OrderedDict
+datapath = '../data/'
+
 planets = ['b', 'c', 'd', 'e', 'f', 'g', 'h']
 resonances = OrderedDict([(('b','c'),(8,5)),(('c','d'),(5,3)),(('d','e'),(3,2)),(('e','f'),(3,2)),(('f','g'),(4,3)),(('g','h'),(3,2))]) # ordered so we add planets in right sequence
 threebodyresonances = OrderedDict([(('b','c','d'),(2,3)),(('c','d','e'),(1,2)),(('d','e','f'),(2,3)),(('e','f','g'),(1,2)),(('f','g','h'),(1,1))])
@@ -27,12 +28,10 @@ df = pd.DataFrame(columns=('K','mag','filename'))
 frac = 0.2 # take last x fraction of samples to check for resonance
 pratiothresh = 0.02
 
-path = '../makeic/data/'
-
 for simID in simIDs:
     outputs = initialize(planets, resonances, threebodyresonances)
-    for filename in os.listdir(path):
-        result = re.search('IC(.*)K(.*).bin', filename)
+    for filename in os.listdir(datapath):
+        result = re.search("IC{0}".format(simID)+r"K[0-9]\.[0-9]{4}e\+[0-9]{2}.bin", filename)
         if result:
             ID = int(result.group(1))
             if ID == simID:
@@ -103,7 +102,7 @@ for simID in simIDs:
                     filename='IC{0}K{1:.4e}mag{2:.4e}.bin'.format(simID, K, mag)
                     df.loc[simID] = [K,mag,filename]
 
-                    sim.initSimulationArchive('data/'+filename, interval=1.e3)
+                    sim.initSimulationArchive(datapath+filename, interval=1.e3)
                     sim.integrate(2.e3, exact_finish_time=0)
                 break
 
