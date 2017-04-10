@@ -7,7 +7,19 @@ import pandas as pd
 tmax = 5.e7
 Nruns = int(sys.argv[1])
 
-df = pd.read_csv('../data.csv', index_col=0)
+df = pd.DataFrame(columns=('K','mag','filename'))
+
+datapath = '../data/'
+for filename in os.listdir(datapath):
+    result = re.search(r"IC(.*)K(.*)mag(.*).bin", filename)
+    if result:
+        simID = int(result.group(1))
+        K = float(result.group(2))
+        mag = float(result.group(3))
+        filename='IC{0}K{1:.4e}mag{2:.4e}.bin'.format(simID, K, mag)
+        df.loc[simID] = [K,mag,filename]
+        
+df = df.sort_index()
 
 with open("data/runlog.txt", "a+") as f:
     f.seek(0)

@@ -13,7 +13,7 @@ def collision(reb_sim, col):
 filename = sys.argv[1]
 tmax = float(sys.argv[2])
 
-path = '../selectic/data/' + filename
+path = '../data/' + filename
 sim = rebound.Simulation.from_archive(path)
 sim.simulationarchive_filename = path.encode('ascii')
 

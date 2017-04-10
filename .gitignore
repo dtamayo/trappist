@@ -1,0 +1,4 @@
+.ipynb_checkpoints/
+*.bin
+*.pdf
+__pycache__/
