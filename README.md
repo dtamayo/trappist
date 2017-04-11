@@ -2,6 +2,8 @@
 
 This repository contains the source code to reproduce the simulations and figures from Tamayo et al. (2017). The data generation and processing is segmented. We start from the most processed (figures) to the least (generating the data files).
 
+The various scripts require REBOUND (https://github.com/hannorein/rebound), REBOUNDx (https://github.com/dtamayo/reboundx), and fairly standard python libraries (jupyter, matplotlib, numpy, pandas).
+
 # Figures
 
 fig1, fig2, fig3 and fig4.ipynb reproduce the figures in the paper, and use CSV files in the csvs directory.
