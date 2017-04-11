@@ -1,6 +1,6 @@
 # Limits on the stability of TRAPPIST-1
 
-This repository contains the source code to reproduce the simulations and figures from Tamayo et al. (2017). The data generation and processing is segmented. We start from the most processed (figures) to the least (generating the data files).
+This repository contains the source code to reproduce the simulations and figures from Tamayo et al. (2017) http://arxiv.org/abs/1704.02957. The data generation and processing is segmented. We start from the most processed (figures) to the least (generating the data files).
 
 The various scripts require REBOUND (https://github.com/hannorein/rebound), REBOUNDx (https://github.com/dtamayo/reboundx), and fairly standard python libraries (jupyter, matplotlib, numpy, pandas).
 
